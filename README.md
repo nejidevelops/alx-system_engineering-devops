@@ -1,1 +1,3 @@
-This is a project that is enjoyable to be done
+ALX PROJECTS
+
+Shell Scripting codes
