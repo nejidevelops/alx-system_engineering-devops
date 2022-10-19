@@ -1,0 +1,78 @@
+In this article, we will go into the details of how these technologies work by tracing the steps from the moment you press the Enter button on your keyboard after typing https://www.google.com on the address bar of your browser till the Google search page we all know is displayed. The diagram below shows the concepts that are going to be discussed in this article.
+
+
+Dissecting the URL
+
+The URL (Uniform Resource Locator) or the web address is a sequence of characters identifying the location of a web resource on the internet. https://www.google.com:443 is a typical example of a URL. Let’s see in detail how the URL is composed.
+
+The “google.com” part is known as the domain name. It is the unique identifier of the site. It has two parts:
+
+The “.com” is called the top-level domain, which identifies the entity the organization registers as on the internet. Some common top-level domains are .com indicating commercial entities, .edu for educational institutions and .gov for governmental organizations.
+The “google” part is the second-level domain. It’s the name of the site.
+The “www” part is known as the subdomain. Subdomains are links to specific pages in a website. If you type images.google.com, this takes you to a page for searching images. “www” is the commonest subdomain for historical reasons but it’s perfectly possible create a domain without “www”.
+
+The “https” portion refers to the protocol and must be followed by a semi colon and two forward slashes. The Hypertext Transfer Protocol (HTTP) is one of the major protocols in the TCP/IP suite. It is a stateless client-server protocol used to fetch web pages from the internet. HTTPS is a secure version of HTTP which uses the Secure Socket Layer (SSL) protocol for encrypting communication between the client and the server and securing user authentication and sensitive information such as credit car information.
+
+The number at the end which is separated from the domain name by a colon is the port number. Ports are communication end-points identifying a specific process or type of network service enabling the use of multiple services from a single IP address. 443 is port number associated with the HTTPS protocol. Some other common ports are HTTP (80), FTP (20 — control, 21 — file transfer), DHCP (67 — server, 68 — client), Telnet (23), SSH (22), SMTP (25), DNS (54) and POP (110).
+
+Typing google.com in the browser usually will suffice. In this case, if you have accessed the site before, browsers remember the port and protocol from previous interaction from the site, so that will be used. If it’s a new access to the site, the browser will send an HTTP request which will be then be redirected to HTTPS. Most browsers also support a policy known HTTP Strict Transport Security (HTST) which has a Preload List of sites which have to be requested through HTTPS, even if referenced by an HTTP URL.
+
+Domain name system and IP addresses
+
+After entering the URL in our browser’s address bar and pressing enter, an HTTP request will be sent directly to the google server. But before that there is an important step. Computers connecting to the internet use numerical addresses which are uniquely assigned to each machine called IP addresses to identify the location of the device they need to communicate to. They don’t understand names such as google.com and these names are only available so that humans are better at memorizing names than numbers. So we need a system to translate our domain names to IP addresses and that’s the role of Domain Name Systems (DNS).
+
+Internet Protocol version 4 (IPv4) addresses which have been around for a long time use decimal notation and contain four numbers separated by dots. An example would be 192.186.1.12. We also have IPv6 addresses which use 128 bits and were created in order to accomodate the largely increasing number of devices that connect to the internet. Assigning of IP addresses is the responsibility of an organization called Internet Corporation for Assigned Names and Numbers (ICANN).
+
+DNS servers are constantly updated to register new domain names and their respective IP addresses. There are many type of DNS records:
+
+A records map domain names to IP addresses.
+Canonical name (CNAME) records map a domain name (an alias) to a another (a canonical name).
+MX records which specify mail servers for accepting email message on behalf of domain name.
+TXT records which associate text informations for sources outside of your domain. Google uses TXT records to verify domain ownership and ensure email security.
+Below I have shown the result from querying google.com using the dig shell command which displays the response from a DNS server. You can read more on the dig command here.
+
+
+HTTP request and response
+
+After obtaining a the IP address, our device (the client) will establish a TCP connection with the server. Then the browser will compose an HTTP request and that request will be sent to the server. This request will contain a request line, request headers and an optional request message body. HTTP requests are not only used to fetch web pages. The request line contains a request method and by using different methods (GET, HEAD, PUT, POST, DELETE, …) we can do a variety of things like post data on the server, ask the server to store data, ask the server to delete data and so on…To fetch a web page usually a GET or HEAD method is used.
+
+The server will process this request and send an HTTP response. This response will also include a response (status) line, headers and an optional body. The response line contains a status code reflecting the outcome of the request. Common status codes to know are:
+
+200 OK: request is fulfilled.
+301 Move Permanently: the requested resources have been moved permanently to a new location.
+302 Found and Redirect: the requested resources have been moved to a new location but in temporarily.
+400 Bad Request: server could not interpret or understand request.
+401 Authentication Required: The requested resource is protected, and require client’s credential (username/password).
+403 Forbidden: Server refuses to supply the resource, regardless of identity of client.
+404 Not Found: The requested resource cannot be found in the server.
+500 Internal Server Error: Server is confused, often caused by an error in the server-side program responding to the request.
+501 Method Not Implemented: The request method used is invalid (could be caused by a typing error, e.g., “GET” misspell as “Get”).
+This picture shows an HTTP GET request to https://www.google.com and a response with a status code of 200 using the curl command line tool:
+
+
+Now we have seen the basics of how web pages are served. But we haven’t actually discussed what happens on the server side of things besides the HTTP response that are sent to the clients.
+
+What is a server?
+
+A server can represent both hardware and software. When we are referring to hardware, especially the ones used by large companies like Google, we are talking about hundreds or even thousands of computers placed in large buildings called data centers, for the purpose of providing resources to clients based on requests. That being said any computer, including your laptop, can be used as a server if the appropriate server software is installed on it. Web servers, application servers, file servers, print servers and proxy servers are some examples of servers.
+
+For the purpose of our discussion, we need to define what a web server and application server is. A web server is a piece of software that is designed to accept HTTP requests and serve static web pages, which are written in HTML, CSS or JavaScript. Nginx, Apache and Microsoft IIS are some of the most common web servers available.
+
+But websites do a lot more than serving static pages. They interact with the user using their graphical user interface and also generate dynamic content based on behavior, user preferences and manipulate huge amounts of data stored in databases. Databases are organized collections of structured information designed to insert, delete, query, access and modify data efficiently.
+
+Dynamic content is served using an application server. Application servers communicate with databases to manipulate data then generate static content from the dynamic content and send the data to web servers to send web pages to the clients.
+
+Load balancers
+
+It’s estimated that Google processes around 63,000 request every second. In order to achieve this, they have thousand of powerful servers working non-stop. But that wouldn’t be enough. They also need to find a way to distribute requests to their servers efficiently. We don’t want one server to process 10 requests while another is sitting idly, right? This is where load balancers come into picture.
+
+Load balancers distribute work load of a system to increase reliability, efficiency and availability. These can be hardware or software.
+
+Software load balancers implement one or more scheduling algorithms to achieve their purpose. The most common algorithms include:
+
+Weighted scheduling — assigns work to servers based on weight assigned to each server. The weight is usually an indicator of the hardware capabilities of each server. This method is used when there is a discernible discrepancy between the capabilities of the servers.
+Round Robin scheduling — serves requests sequentially and suitable for servers of relatively equal capabilities and less persistent connections.
+Least connection first scheduling — serves requests based on which server has the least amount of persistent connections and is very useful in network traffic where the number of persistent connections between servers is unevenly distributed.
+Hardware load balancers include layer 4 hardware load balancing which uses techniques such as IP tunneling and DNS load balancing, and layer 7 hardware load balancing which uses URL parsing, cookie sniffing and HTTP reading.
+
+On a final note, these servers need to filter out incoming and outgoing network traffic through the use of firewalls. Firewalls are hardware or software security implementations that allow, limit, and block network traffic based on a set of predefined rules. They are usually put between a private network and the Internet.
