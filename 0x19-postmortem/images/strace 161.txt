@@ -1,0 +1,164 @@
+	root@5aab9f6cb9c9:~# strace -p 161
+Process 161 attached
+accept4(3, {sa_family=AF_INET, sin_port=htons(41004), sin_addr=inet_addr("172.17.0.1")}, [16], SOCK_CLOE                        XEC) = 11
+getsockname(11, {sa_family=AF_INET, sin_port=htons(80), sin_addr=inet_addr("172.17.0.2")}, [16]) = 0
+fcntl(11, F_GETFL)                      = 0x2 (flags O_RDWR)
+fcntl(11, F_SETFL, O_RDWR|O_NONBLOCK)   = 0
+read(11, "GET / HTTP/1.1\r\nHost: 5aab9f6cb9"..., 8000) = 178
+stat("/var/www/html/", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat("/var/www/html/index.html", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+lstat("/var", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html/index.html", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+stat("/var/www/html/index.cgi", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+lstat("/var", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html/index.cgi", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+stat("/var/www/html/index.pl", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+lstat("/var", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html/index.pl", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+stat("/var/www/html/index.php", {st_mode=S_IFREG|0644, st_size=418, ...}) = 0
+setitimer(ITIMER_PROF, {it_interval={0, 0}, it_value={60, 0}}, NULL) = 0
+rt_sigaction(SIGPROF, {0x7f4477113a50, [PROF], SA_RESTORER|SA_RESTART, 0x7f447a3f5cb0}, {0x7f4477113a50,                         [PROF], SA_RESTORER|SA_RESTART, 0x7f447a3f5cb0}, 8) = 0
+rt_sigprocmask(SIG_UNBLOCK, [PROF], NULL, 8) = 0
+getcwd("/", 4095)                       = 2
+chdir("/var/www/html")                  = 0
+setitimer(ITIMER_PROF, {it_interval={0, 0}, it_value={30, 0}}, NULL) = 0
+fcntl(8, F_SETLK, {type=F_RDLCK, whence=SEEK_SET, start=1, len=1}) = 0
+stat("/var/www/html/index.php", {st_mode=S_IFREG|0644, st_size=418, ...}) = 0
+stat("/var/www/html/wp-blog-header.php", {st_mode=S_IFREG|0644, st_size=364, ...}) = 0
+stat("/var/www/html/wp-load.php", {st_mode=S_IFREG|0644, st_size=3301, ...}) = 0
+access("/var/www/html/wp-config.php", F_OK) = 0
+stat("/var/www/html/wp-config.php", {st_mode=S_IFREG|0644, st_size=3047, ...}) = 0
+stat("/var/www/html/wp-settings.php", {st_mode=S_IFREG|0644, st_size=16251, ...}) = 0
+stat("/var/www/html/wp-includes/load.php", {st_mode=S_IFREG|0644, st_size=31394, ...}) = 0
+stat("/var/www/html/wp-includes/default-constants.php", {st_mode=S_IFREG|0644, st_size=9489, ...}) = 0
+stat("/var/www/html/wp-includes/plugin.php", {st_mode=S_IFREG|0644, st_size=31282, ...}) = 0
+stat("/var/www/html/wp-includes/class-wp-hook.php", {st_mode=S_IFREG|0644, st_size=14460, ...}) = 0
+stat("/var/www/html/wp-includes/version.php", {st_mode=S_IFREG|0644, st_size=619, ...}) = 0
+stat("/usr/share/zoneinfo/UTC", {st_mode=S_IFREG|0644, st_size=118, ...}) = 0
+access("/var/www/html/.maintenance", F_OK) = -1 ENOENT (No such file or directory)
+access("/var/www/html/wp-content/languages", F_OK) = -1 ENOENT (No such file or directory)
+stat("/var/www/html/wp-includes/languages", 0x7ffeda4fc2f0) = -1 ENOENT (No such file or directory)
+stat("/var/www/html/wp-includes/compat.php", {st_mode=S_IFREG|0644, st_size=17195, ...}) = 0
+stat("/var/www/html/wp-includes/random_compat/random.php", {st_mode=S_IFREG|0644, st_size=7694, ...}) =                         0
+stat("/var/www/html/wp-includes/random_compat/byte_safe_strings.php", {st_mode=S_IFREG|0644, st_size=565                        1, ...}) = 0
+stat("/var/www/html/wp-includes/random_compat/cast_to_int.php", {st_mode=S_IFREG|0644, st_size=2461, ...                        }) = 0
+stat("/var/www/html/wp-includes/random_compat/error_polyfill.php", {st_mode=S_IFREG|0644, st_size=1533,                         ...}) = 0
+access("/dev/urandom", R_OK)            = 0
+stat("/var/www/html/wp-includes/random_compat/random_bytes_dev_urandom.php", {st_mode=S_IFREG|0644, st_s                        ize=4543, ...}) = 0
+stat("/var/www/html/wp-includes/random_compat/random_int.php", {st_mode=S_IFREG|0644, st_size=5697, ...}                        ) = 0
+stat("/var/www/html/wp-includes/class-wp-list-util.php", {st_mode=S_IFREG|0644, st_size=6487, ...}) = 0
+stat("/var/www/html/wp-includes/functions.php", {st_mode=S_IFREG|0644, st_size=174663, ...}) = 0
+stat("/var/www/html/wp-includes/option.php", {st_mode=S_IFREG|0644, st_size=63787, ...}) = 0
+stat("/var/www/html/wp-includes/class-wp-matchesmapregex.php", {st_mode=S_IFREG|0644, st_size=1913, ...}                        ) = 0
+stat("/var/www/html/wp-includes/class-wp.php", {st_mode=S_IFREG|0644, st_size=24136, ...}) = 0
+stat("/var/www/html/wp-includes/class-wp-error.php", {st_mode=S_IFREG|0644, st_size=4664, ...}) = 0
+stat("/var/www/html/wp-includes/pomo/mo.php", {st_mode=S_IFREG|0644, st_size=8462, ...}) = 0
+stat("/var/www/html/wp-includes/pomo/translations.php", {st_mode=S_IFREG|0644, st_size=8779, ...}) = 0
+stat("/var/www/html/wp-includes/pomo/entry.php", {st_mode=S_IFREG|0644, st_size=2887, ...}) = 0
+stat("/var/www/html/wp-includes/pomo/streams.php", {st_mode=S_IFREG|0644, st_size=5948, ...}) = 0
+stat("/var/www/html/wp-includes/class-phpass.php", {st_mode=S_IFREG|0644, st_size=7317, ...}) = 0
+stat("/var/www/html/wp-includes/wp-db.php", {st_mode=S_IFREG|0644, st_size=95513, ...}) = 0
+access("/var/www/html/wp-content/db.php", F_OK) = -1 ENOENT (No such file or directory)
+socket(PF_LOCAL, SOCK_STREAM, 0)        = 12
+fcntl(12, F_SETFL, O_RDONLY)            = 0
+fcntl(12, F_GETFL)                      = 0x2 (flags O_RDWR)
+connect(12, {sa_family=AF_LOCAL, sun_path="/var/run/mysqld/mysqld.sock"}, 110) = 0
+setsockopt(12, SOL_SOCKET, SO_RCVTIMEO, "\2003\341\1\0\0\0\0\0\0\0\0\0\0\0\0", 16) = 0
+setsockopt(12, SOL_SOCKET, SO_SNDTIMEO, "\2003\341\1\0\0\0\0\0\0\0\0\0\0\0\0", 16) = 0
+setsockopt(12, SOL_IP, IP_TOS, [8], 4)  = -1 EOPNOTSUPP (Operation not supported)
+setsockopt(12, SOL_SOCKET, SO_KEEPALIVE, [1], 4) = 0
+read(12, "[\0\0\0\n5.5.54-0ubuntu0.14.04.1\0(\0\0"..., 16384) = 95
+write(12, "U\0\0\1\5\242\16\0\0\0\0@\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"..., 89) = 89
+read(12, "\7\0\0\2\0\0\0\2\0\0\0", 16384) = 11
+poll([{fd=12, events=POLLIN|POLLPRI}], 1, 0) = 0 (Timeout)
+write(12, "\22\0\0\0\3SET NAMES utf8mb4", 22) = 22
+read(12, "\7\0\0\1\0\0\0\2\0\0\0", 16384) = 11
+poll([{fd=12, events=POLLIN|POLLPRI}], 1, 0) = 0 (Timeout)
+write(12, "1\0\0\0\3SET NAMES 'utf8mb4' COLLATE"..., 53) = 53
+read(12, "\7\0\0\1\0\0\0\2\0\0\0", 16384) = 11
+poll([{fd=12, events=POLLIN|POLLPRI}], 1, 0) = 0 (Timeout)
+write(12, "\32\0\0\0\3SELECT @@SESSION.sql_mode", 30) = 30
+read(12, "\1\0\0\1\1(\0\0\2\3def\0\0\0\22@@SESSION.sql_m"..., 16384) = 72
+poll([{fd=12, events=POLLIN|POLLPRI}], 1, 0) = 0 (Timeout)
+write(12, "\n\0\0\0\2wordpress", 14)    = 14
+read(12, "\7\0\0\1\0\0\0\2\0\0\0", 16384) = 11
+access("/var/www/html/wp-content/object-cache.php", F_OK) = -1 ENOENT (No such file or directory)
+stat("/var/www/html/wp-includes/cache.php", {st_mode=S_IFREG|0644, st_size=22058, ...}) = 0
+stat("/var/www/html/wp-includes/default-filters.php", {st_mode=S_IFREG|0644, st_size=25220, ...}) = 0
+stat("/var/www/html/wp-includes/l10n.php", {st_mode=S_IFREG|0644, st_size=43130, ...}) = 0
+lstat("/var/www/html/wp-includes/class-wp-locale.phpp", 0x7ffeda4f8190) = -1 ENOENT (No such file or dir                        ectory)
+lstat("/var/www/html/wp-includes/class-wp-locale.phpp", 0x7ffeda4f8060) = -1 ENOENT (No such file or dir                        ectory)
+lstat("/var/www/html/wp-includes/class-wp-locale.phpp", 0x7ffeda4fa290) = -1 ENOENT (No such file or dir                        ectory)
+open("/var/www/html/wp-includes/class-wp-locale.phpp", O_RDONLY) = -1 ENOENT (No such file or directory)
+chdir("/")                              = 0
+write(12, "\1\0\0\0\1", 5)              = 5
+shutdown(12, SHUT_RDWR)                 = 0
+close(12)                               = 0
+setitimer(ITIMER_PROF, {it_interval={0, 0}, it_value={0, 0}}, NULL) = 0
+fcntl(8, F_SETLK, {type=F_UNLCK, whence=SEEK_SET, start=0, len=0}) = 0
+setitimer(ITIMER_PROF, {it_interval={0, 0}, it_value={0, 0}}, NULL) = 0
+writev(11, [{"HTTP/1.0 500 Internal Server Err"..., 206}], 1) = 206
+write(7, "172.17.0.1 - - [20/May/2020:22:3"..., 87) = 87
+times({tms_utime=3, tms_stime=2, tms_cutime=0, tms_cstime=0}) = 1885025782
+shutdown(11, SHUT_WR)                   = 0
+poll([{fd=11, events=POLLIN}], 1, 2000) = 1 ([{fd=11, revents=POLLIN|POLLHUP}])
+read(11, "", 512)                       = 0
+close(11)                               = 0
+read(4, 0x7ffeda4ff437, 1)              = -1 EAGAIN (Resource temporarily unavailable)
+accept4(3, root@5aab9f6cb9c9:~# strace -p 161
+Process 161 attached
+accept4(3, {sa_family=AF_INET, sin_port=htons(41004), sin_addr=inet_addr("172.17.0.1")}, [16], SOCK_CLOE                        XEC) = 11
+getsockname(11, {sa_family=AF_INET, sin_port=htons(80), sin_addr=inet_addr("172.17.0.2")}, [16]) = 0
+fcntl(11, F_GETFL)                      = 0x2 (flags O_RDWR)
+fcntl(11, F_SETFL, O_RDWR|O_NONBLOCK)   = 0
+read(11, "GET / HTTP/1.1\r\nHost: 5aab9f6cb9"..., 8000) = 178
+stat("/var/www/html/", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+stat("/var/www/html/index.html", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+lstat("/var", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html/index.html", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+stat("/var/www/html/index.cgi", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+lstat("/var", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html/index.cgi", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+stat("/var/www/html/index.pl", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+lstat("/var", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html", {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+lstat("/var/www/html/index.pl", 0x7ffeda4fef80) = -1 ENOENT (No such file or directory)
+stat("/var/www/html/index.php", {st_mode=S_IFREG|0644, st_size=418, ...}) = 0
+setitimer(ITIMER_PROF, {it_interval={0, 0}, it_value={60, 0}}, NULL) = 0
+rt_sigaction(SIGPROF, {0x7f4477113a50, [PROF], SA_RESTORER|SA_RESTART, 0x7f447a3f5cb0}, {0x7f4477113a50,                         [PROF], SA_RESTORER|SA_RESTART, 0x7f447a3f5cb0}, 8) = 0
+rt_sigprocmask(SIG_UNBLOCK, [PROF], NULL, 8) = 0
+getcwd("/", 4095)                       = 2
+chdir("/var/www/html")                  = 0
+setitimer(ITIMER_PROF, {it_interval={0, 0}, it_value={30, 0}}, NULL) = 0
+fcntl(8, F_SETLK, {type=F_RDLCK, whence=SEEK_SET, start=1, len=1}) = 0
+stat("/var/www/html/index.php", {st_mode=S_IFREG|0644, st_size=418, ...}) = 0
+stat("/var/www/html/wp-blog-header.php", {st_mode=S_IFREG|0644, st_size=364, ...}) = 0
+stat("/var/www/html/wp-load.php", {st_mode=S_IFREG|0644, st_size=3301, ...}) = 0
+access("/var/www/html/wp-config.php", F_OK) = 0
+stat("/var/www/html/wp-config.php", {st_mode=S_IFREG|0644, st_size=3047, ...}) = 0
+stat("/var/www/html/wp-settings.php", {st_mode=S_IFREG|0644, st_size=16251, ...}) = 0
+stat("/var/www/html/wp-includes/load.php", {st_mode=S_IFREG|0644, st_size=31394, ...}) = 0
+stat("/var/www/html/wp-includes/default-constants.php", {st_mode=S_IFREG|0644, st_size=9489, ...}) = 0
+stat("/var/www/html/wp-includes/plugin.php", {st_mode=S_IFREG|0644, st_size=31282, ...}) = 0
+stat("/var/www/html/wp-includes/class-wp-hook.php", {st_mode=S_IFREG|0644, st_size=14460, ...}) = 0
+stat("/var/www/html/wp-includes/version.php", {st_mode=S_IFREG|0644, st_size=619, ...}) = 0
+stat("/usr/share/zoneinfo/UTC", {st_mode=S_IFREG|0644, st_size=118, ...}) = 0
+access("/var/www/html/.maintenance", F_OK) = -1 ENOENT (No such file or directory)
+access("/var/www/html/wp-content/languages", F_OK) = -1 ENOENT (No such file or directory)
+stat("/var/www/html/wp-includes/languages", 0x7ffeda4fc2f0) = -1 ENOENT (No such file or directory)
+stat("/var/www/html/wp-includes/compat.php", {st_mode=S_IFREG|0644, st_size=17195, ...}) = 0
+stat("/var/www/html/wp-includes/random_compat/random.php", {st_mode=S_IFREG|0644, st_size=7694, ...}) =                         0
+stat("/var/www/html/wp-includes/random_compat/byte_safe_strings.php", {st_mode=S_IFREG|0644, st_size=565                        1, ...}) = 0
+stat("/var/www/html/wp-includes/random_compat/cast_to_int.php", {st_mode=S_IFREG|0644, st_size=2461, ...                        }) = 0
+stat("/var/www/html/wp-includes/ra
